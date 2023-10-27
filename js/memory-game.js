@@ -78,80 +78,7 @@ function unFlipCard(card) {
 // //declare card2
 // let card2;
 
-// function handleCardClick(evt) {
-//   //if card1 or card2 is undefined
-//   if (card1 === undefined || card2 === undefined) {
-//     //if the card is not already flipped
-//     if (!evt.target.classList.contains('flipped')) {
-//       //flip the card
-//       flipCard(evt.target);
-//       //if card1 is undefined
-//       if (card1 === undefined) {
-//         //assign the event target to be card1
-//         card1 = evt.target;
-//         console.log(card1);
-//       }
-//       //else
-//       else {
-//         //assign the event target to be card2
-//         card2 = evt.target;
-//         console.log(card2);
-//       }
-//       console.log("card1: ", card1, "card2: ", card2);
-//     }
-//   }
-//   //if card1 and card2 are defined
-//   if (card1 !== undefined && card2 !== undefined) {
-//     //compare cards - if equal
-//     if (cardsMatch(card1, card2)) {
-//       //leave them flipped
-//       //reassign card1 and card2 to be undefined after 1 sec
-//       setTimeout(() => {
-//         card1 = undefined;
-//         card2 = undefined;
-//         console.log("cards reset")
-//       }, 1000);
-//     } else {
-//       //wait 1 second
-//       setTimeout(() => {
-//         //unflip both cards 
-//         unFlipCard(card1);
-//         unFlipCard(card2);  
-//         //reassign card1 and card2 to be undefined
-//         card1 = undefined;
-//         card2 = undefined;
-//         console.log("cards reset")
-//       }, 1000); 
-//     }
-//   }
-// }
 
-// function cardsMatch(card1, card2) {
-//     console.log(card1.classList, card2.classList);
-//     //if the cards are the same object
-//     if (card1 === card2) {
-//       //log 'same card!'
-//       console.log('error: same card!');
-//       //return false;
-//       return false;
-//     //else
-//     } else {
-//       //iterate over card1's classList
-//       for (let i = 0; i < card1.classList.length; i++) {
-//         //if the current class of card1.classList is not equal to the class at the same index of card2.classList
-//         console.log(card1.classList[i], card2.classList[i]);
-//         if (card1.classList[i] !== card2.classList[i]) {
-//           //log 'no match!'
-//           console.log('no match!');
-//           //return false;
-//           return false;
-//         }
-//       }
-//       console.log('match found!')
-//       //return true;
-//       return true;
-//     }
-//   }
 
   //store count
   let count = 0;
@@ -173,7 +100,7 @@ function unFlipCard(card) {
       If previous setTimeout has reached its timer before user clicks again and calls the 
       function, it will execute and unflip card1. The "first card" will be unflipped before
       you click on a second card.*/
-      
+
     //everytime user clicks, the previous timeout set by a previous click will be cleared,
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
