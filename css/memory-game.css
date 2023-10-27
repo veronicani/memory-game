@@ -1,0 +1,30 @@
+/* you can add to or change this. */
+
+#game .card {
+  border: 1px solid black;
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display: inline-block;
+}
+
+
+.flipped.red {
+  background-color: red;
+} 
+
+.flipped.orange {
+  background-color: orange;
+} 
+
+.flipped.green {
+  background-color: green;
+} 
+
+.flipped.blue {
+  background-color: blue;
+} 
+
+.flipped.purple {
+  background-color: purple;
+} 
