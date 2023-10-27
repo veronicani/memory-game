@@ -37,7 +37,7 @@ function shuffle(items) {
  * - a class with the value of the color
  * - a click event listener for each card to handleCardClick
  */
-
+kjashdkashdkjhasd
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
 
