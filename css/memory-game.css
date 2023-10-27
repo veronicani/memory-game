@@ -1,13 +1,70 @@
-/* you can add to or change this. */
+/* || General Styles */
+:root {
+  --clr-background: #FFFFFF;
+  --clr-primary: #FFFFFF;
+  --clr-font: rgb(0 0 0);
+  --clr-font-lt: rgb(0 0 0 / .5) ; /* with alpha*/
+  
+  --font-size: 16px;
+  --border-radius: 0.2em;
+}
 
-#game .card {
-  border: 1px solid black;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family:'', sans-serif;
+  font-size: var(--font-size);
+  background-color: var(--clr-background);
+}
+
+/* || Typography */
+
+/* || Utilities -- for styling choices you want to apply to a lot of elements << ref MDN*/
+
+/* || Header */
+
+/* || Gameboard */
+
+.card {
+  display: inline-block;
   width: 100px;
   height: 100px;
   margin: 20px;
-  display: inline-block;
+  border: 1px solid black;
+  background-color: transparent;
 }
 
+.card__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.flipped {
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  transform: rotateY(180deg);
+}
+
+.card__front, .card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card__front {
+  background-color: #bbb;
+}
+
+.card__back {
+  transform: rotateY(180deg);
+}
 
 .flipped.red {
   background-color: red;
