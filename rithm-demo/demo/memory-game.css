@@ -1,9 +1,45 @@
 /* you can add to or change this. */
 
-#game div {
-  border: 1px solid black;
+.container {
+  display: inline-block;
   width: 100px;
   height: 100px;
   margin: 20px;
-  display: inline-block;
+  /* background-color: transparent; */
+  border: 1px solid black;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__front, 
+.card__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.card__front {
+  transform: rotateY(180deg);
+}
+
+.card__back {
+  background: rgb(101, 134, 232);
+}
+
+.pink {
+  background-color: pink;
 }

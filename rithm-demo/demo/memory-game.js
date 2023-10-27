@@ -63,3 +63,17 @@ function unFlipCard(card) {
 function handleCardClick(evt) {
   // ... you need to write this ...
 }
+
+const cards = document.querySelectorAll('.card');
+
+for (let card of cards) {
+  card.addEventListener('click', flipper);
+}
+
+function flipper(evt) {
+  console.log(evt.target.parentElement.className);
+  evt.target.parentElement.classList.toggle('is-flipped');
+  setTimeout(function() {
+    evt.target.parentElement.classList.toggle('is-flipped');
+  },1000);
+}
