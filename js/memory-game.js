@@ -157,8 +157,27 @@ function unFlipCard(card) {
   let count = 0;
   let card1 = undefined;
   let card2 = undefined;
-  
+  let timeoutID;
+ 
   function handleCardClick2(evt) {
+    //clears a previous setTimeout upon click event -- prevents setTimeout from stacking
+      /*Case 1 -  two matching cards w/ setTimeout active to reset card1 and card2. 
+      If the "first card" is selected, it will be stored in card1 and count increments to 1. 
+      If previous setTimeout has reached its timer before user clicks again and calls the 
+      function, it will execute cb and reset the card1 and count. Now, the "first card" is
+      no longer stored in card1, and the next card flipped will be the new card1.  It will
+      remain flipped.*/
+    
+      /*Case 2 - two non-matching cards w/ setTimeout active to unflip cards. 
+      If the "first card" is selected, it will be stored in card1 and count increments to 1.
+      If previous setTimeout has reached its timer before user clicks again and calls the 
+      function, it will execute and unflip card1. The "first card" will be unflipped before
+      you click on a second card.*/
+      
+    //everytime user clicks, the previous timeout set by a previous click will be cleared,
+    // and the cards will never reset. A new timeout is set, forcing user to wait full 
+    //duration again.
+    clearTimeout(timeoutID);
     //if the count is less than 2
     if (count < 2) {
       //if the card is not flipped
@@ -167,7 +186,7 @@ function unFlipCard(card) {
         flipCard(evt.target);
         //store the card as card1 or card2
         storeCard(evt.target);
-        //increment the count 
+        //increment the count;
         count++;
       }
     }
@@ -179,7 +198,7 @@ function unFlipCard(card) {
       //check if cards match
       if (cardsMatch(card1, card2)) {
         //if so, wait 1 second
-        setTimeout(() => {
+        timeoutID = setTimeout(() => {
           //reset count to 0;
           count = 0;
           //reset card1 and card2 to be undefined;
@@ -188,7 +207,7 @@ function unFlipCard(card) {
         }, 1000);
       } else {
         //wait 1 second
-        setTimeout(() => {
+        timeoutID = setTimeout(() => {
           //unflip card1 and card2
           unFlipCard(card1);
           unFlipCard(card2);
@@ -224,19 +243,11 @@ function unFlipCard(card) {
       return false;
     //else
     } else {
-      //iterate over card1's classList
-      for (let i = 0; i < card1.classList.length; i++) {
-        //if the current class of card1.classList is not equal to the class at the same index of card2.classList
-        console.log(card1.classList[i], card2.classList[i]);
-        if (card1.classList[i] !== card2.classList[i]) {
-          //log 'no match!'
-          console.log('no match!');
-          //return false;
-          return false;
-        }
-      }
-      console.log('match found!')
-      //return true;
-      return true;
+      console.log(card1.className, card2.className);
+      //check if classNames of card1 and card2 mach
+      if (card1.className === card2.className) {
+        console.log('match found!');
+        return true;
+      } 
     }
   }
