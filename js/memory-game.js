@@ -42,33 +42,43 @@ function createCards(colors) {
   const gameBoard = document.getElementById("game");
 
   for (let color of colors) {
-    //create a div element (card) for the color
+    //create a div element, add class 'container'
+    const newContainer = document.createElement('div');
+    newContainer.classList.add("container");
+    //create a div element, add class 'card'
     const newCard = document.createElement('div');
-    //add a class with the value of the color -- style the class in the CSS
     newCard.classList.add("card");
-    newCard.classList.add(color);
+    //create a div element, add class 'card__front'
+    const newCardFront = document.createElement('div');
+    newCardFront.classList.add("card__front");
+    //add class with value of color to card__front;
+    newCardFront.classList.add(color); 
+    //create a div element, add class 'card__back'
+    const newCardBack = document.createElement('div');
+    newCardBack.classList.add("card__back");
+    //append card_front card__back to card
+    newCard.append(newCardFront, newCardBack);
     //add a click event listener to the card to handleCardClick
-    newCard.addEventListener('click', handleCardClick2);
-    //append the card element to the gameBoard
-    gameBoard.append(newCard);
+    newCard.addEventListener('click', handleCardClick);
+    //append card to container
+    newContainer.append(newCard);
+    //append the container to the gameBoard
+    gameBoard.append(newContainer);
   }
 }
 
 /** Flip a card face-up. */
 
-function flipCard(card) {
-  //add the class "flipped" on the card
-  card.classList.add("flipped");
-  //if it has the class "flipped", it will show the front of the card
+function flipCard(cardBack) {
+  //add the class "flipped" on the card's parent
+  cardBack.parentElement.classList.add("flipped");
 }
 
 /** Flip a card face-down. */
 
-function unFlipCard(card) {
-  //remove class "flipped" from the card
-  card.classList.remove("flipped");
-  //if it does not have the "flipped" class, it will show the back of the card
-
+function unFlipCard(cardFront) {
+  //remove class "flipped" from the card's parent
+  cardFront.parentElement.classList.remove("flipped");
 }
 
 /** Handle clicking on a card: this could be first-card or second-card. */
@@ -77,7 +87,7 @@ function unFlipCard(card) {
   let card2 = undefined;
   let timeoutID;
  
-  function handleCardClick2(evt) {
+  function handleCardClick(evt) {
     //clears a previous setTimeout upon click event -- prevents setTimeout from stacking
       /*Case 1 -  two matching cards w/ setTimeout active to reset card1 and card2. 
       If the "first card" is selected, it will be stored in card1 and count increments to 1. 
@@ -96,14 +106,18 @@ function unFlipCard(card) {
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
     clearTimeout(timeoutID);
+    //the event target is the card__back, which is a child of the card
+    const card = evt.target.parentElement;
+    const cardBack = evt.target;
+    const cardFront = evt.target.previousElementSibling;
     //if card1 or card2 are undefined
     if (card1 === undefined || card2 === undefined) {
       //if the card is not flipped
-      if (!evt.target.classList.contains('flipped')) {
+      if (!card.classList.contains('flipped')) {
         //flip the card
-        flipCard(evt.target);
-        //store the card as card1 or card2
-        storeCard(evt.target);
+        flipCard(cardBack);
+        //store the card's front as card1 or card2
+        storeCard(cardFront);
       }
     }
     //if card1 and card2 have been selected
@@ -118,6 +132,7 @@ function unFlipCard(card) {
         //wait 1 second
         timeoutID = setTimeout(() => {
           //unflip card1 and card2
+          console.log(card1.parentElement, card2.parentElement);
           unFlipCard(card1);
           unFlipCard(card2);
           //reset card1 and card2 to be undefined;
@@ -144,19 +159,9 @@ function storeCard(flippedCard) {
   
 /** Check if the first and second card match. */
 function cardsMatch(card1, card2) {
-  //if the cards are the same object
-  if (card1 === card2) {
-    //log 'same card!'
-    console.log('error: same card!');
-    //return false;
-    return false;
-  //else
-  } else {
-    console.log(card1.className, card2.className);
-    //check if classNames of card1 and card2 match
-    if (card1.className === card2.className) {
-      console.log('match found!');
-      return true;
-    } 
-  }
+  //if classNames of card1 and card2 match
+  if (card1.className === card2.className) {
+    console.log('match found!');
+    return true;
+  } 
 }

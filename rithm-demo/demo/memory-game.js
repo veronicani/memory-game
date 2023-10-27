@@ -72,8 +72,8 @@ for (let card of cards) {
 
 function flipper(evt) {
   console.log(evt.target.parentElement.className);
-  evt.target.parentElement.classList.toggle('is-flipped');
+  evt.target.parentElement.classList.add('is-flipped');
   setTimeout(function() {
-    evt.target.parentElement.classList.toggle('is-flipped');
+    evt.target.parentElement.classList.remove('is-flipped');
   },1000);
 }

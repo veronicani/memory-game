@@ -27,30 +27,31 @@ body {
 
 /* || Gameboard */
 
-.card {
+.container {
   display: inline-block;
   width: 100px;
   height: 100px;
   margin: 20px;
+  /* background-color: transparent; */
   border: 1px solid black;
-  background-color: transparent;
 }
 
-.card__inner {
+.card {
   position: relative;
   width: 100%;
   height: 100%;
-  text-align: center;
+  cursor: pointer;
+  transition: transform 0.8s ease;
+  transform-style: preserve-3d;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.flipped {
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+.card.flipped {
   transform: rotateY(180deg);
 }
 
-.card__front, .card__back {
+.card__front, 
+.card__back {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -59,29 +60,29 @@ body {
 }
 
 .card__front {
-  background-color: #bbb;
-}
-
-.card__back {
   transform: rotateY(180deg);
 }
 
-.flipped.red {
+.card__back {
+  background: rgb(101, 134, 232);
+}
+
+.red {
   background-color: red;
 } 
 
-.flipped.orange {
+.orange {
   background-color: orange;
 } 
 
-.flipped.green {
+.green {
   background-color: green;
 } 
 
-.flipped.blue {
+.blue {
   background-color: blue;
 } 
 
-.flipped.purple {
+.purple {
   background-color: purple;
 } 
