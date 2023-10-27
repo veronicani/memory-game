@@ -57,7 +57,7 @@ function createCards(colors) {
 /** Flip a card face-up. */
 
 function flipCard(card) {
-  //toggle the class "flipped" on the card so it is TRUE
+  //add the class "flipped" on the card
   card.classList.add("flipped");
   //if it has the class "flipped", it will show the front of the card
 }
@@ -65,7 +65,7 @@ function flipCard(card) {
 /** Flip a card face-down. */
 
 function unFlipCard(card) {
-  //toggle the class "flipped" on the card so it is FALSE
+  //remove class "flipped" from the card
   card.classList.remove("flipped");
   //if it does not have the "flipped" class, it will show the back of the card
 
@@ -73,15 +73,6 @@ function unFlipCard(card) {
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
-// //declare card1
-// let card1;
-// //declare card2
-// let card2;
-
-
-
-  //store count
-  let count = 0;
   let card1 = undefined;
   let card2 = undefined;
   let timeoutID;
@@ -105,41 +96,30 @@ function unFlipCard(card) {
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
     clearTimeout(timeoutID);
-    //if the count is less than 2
-    if (count < 2) {
+    //if card1 or card2 are undefined
+    if (card1 === undefined || card2 === undefined) {
       //if the card is not flipped
       if (!evt.target.classList.contains('flipped')) {
         //flip the card
         flipCard(evt.target);
         //store the card as card1 or card2
         storeCard(evt.target);
-        //increment the count;
-        count++;
       }
     }
-    console.log(count);
-    console.log(card1, card2); 
-
     //if card1 and card2 have been selected
     if (card1 !== undefined && card2 !== undefined) {
       //check if cards match
       if (cardsMatch(card1, card2)) {
-        //if so, wait 1 second
-        timeoutID = setTimeout(() => {
-          //reset count to 0;
-          count = 0;
-          //reset card1 and card2 to be undefined;
-          card1 = undefined;
-          card2 = undefined;
-        }, 1000);
+        //if so, leave face up
+        //reset card1 and card2 to be undefined;
+        card1 = undefined;
+        card2 = undefined;
       } else {
         //wait 1 second
         timeoutID = setTimeout(() => {
           //unflip card1 and card2
           unFlipCard(card1);
           unFlipCard(card2);
-          //reset count to 0;
-          count = 0;
           //reset card1 and card2 to be undefined;
           card1 = undefined;
           card2 = undefined;
@@ -148,33 +128,35 @@ function unFlipCard(card) {
     }
   }
 
-  function storeCard(flippedCard) {
-    //if card1 is undefined
-    if (card1 === undefined) {
-      //card1 is the flipped card
-      card1 = flippedCard;
-    } else {
-      //card2 is flipped card
-      card2 = flippedCard;
-    }
-    //return card1, card2  
-    return card1, card2;
+/** Remember if a card is the first one flipped or the second one flipped. */
+function storeCard(flippedCard) {
+  //if card1 is undefined
+  if (card1 === undefined) {
+    //card1 is the flipped card
+    card1 = flippedCard;
+  } else {
+    //card2 is flipped card
+    card2 = flippedCard;
   }
-
-  function cardsMatch(card1, card2) {
-    //if the cards are the same object
-    if (card1 === card2) {
-      //log 'same card!'
-      console.log('error: same card!');
-      //return false;
-      return false;
-    //else
-    } else {
-      console.log(card1.className, card2.className);
-      //check if classNames of card1 and card2 mach
-      if (card1.className === card2.className) {
-        console.log('match found!');
-        return true;
-      } 
-    }
+  //return card1, card2  
+  return card1, card2;
+}
+  
+/** Check if the first and second card match. */
+function cardsMatch(card1, card2) {
+  //if the cards are the same object
+  if (card1 === card2) {
+    //log 'same card!'
+    console.log('error: same card!');
+    //return false;
+    return false;
+  //else
+  } else {
+    console.log(card1.className, card2.className);
+    //check if classNames of card1 and card2 match
+    if (card1.className === card2.className) {
+      console.log('match found!');
+      return true;
+    } 
   }
+}
