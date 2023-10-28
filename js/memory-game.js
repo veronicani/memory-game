@@ -3,15 +3,15 @@
 /** Memory game: find matching pairs of cards and flip both of them. */
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
-const COLORS = [
-  "red", "blue", "green", "orange", "purple",
+const COLOR_HALF = [
   "red", "blue", "green", "orange", "purple",
 ];
+
+const COLORS = COLOR_HALF.concat(COLOR_HALF);
 
 const colors = shuffle(COLORS);
 
 createCards(colors);
-
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -105,6 +105,7 @@ function unFlipCard(cardFront) {
     //everytime user clicks, the previous timeout set by a previous click will be cleared,
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
+
     clearTimeout(timeoutID);
     //the event target is the card__back, which is a child of the card
     const card = evt.target.parentElement;

@@ -6,7 +6,7 @@
   --clr-font-lt: rgb(0 0 0 / .5) ; /* with alpha*/
   
   --font-size: 16px;
-  --border-radius: 0.2em;
+  --border-radius: 1em;
 }
 
 * {
@@ -33,7 +33,7 @@ body {
   height: 100px;
   margin: 20px;
   /* background-color: transparent; */
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .card {
@@ -41,9 +41,10 @@ body {
   width: 100%;
   height: 100%;
   cursor: pointer;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: transform 0.8s ease;
   transform-style: preserve-3d;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
 .card.flipped {
@@ -55,6 +56,7 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
+  border-radius: var(--border-radius);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
