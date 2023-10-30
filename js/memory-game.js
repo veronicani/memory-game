@@ -13,21 +13,6 @@ const COLORS = COLOR_HALF.concat(COLOR_HALF);
 const colors = shuffle(COLORS);
 
 createCards(colors);
-createClickCounter();
-
-
-/** Create a counter for number of clicks */
-function createClickCounter() {
-  //select the <main> of the document
-  const main = document.querySelector('main');
-  //create a new h2 (clicks)
-  const clickCounter = document.createElement('h2');
-  //assign innerText of h2 to be "Clicks: " + result of incrementing counts;
-  clickCounter.innerText = 'Clicks: ' + incrementClickCounter();
-    //when a click happens, the counter will increment
-  //prepend the h2 to the <main>
-  main.prepend(clickCounter);
-}
 
 
 /** Shuffle array items in-place and return shuffled array. */
@@ -77,7 +62,7 @@ function createCards(colors) {
     newCard.append(newCardFront, newCardBack);
     //add a click event listener to the card to handleCardClick
     newCard.addEventListener('click', handleCardClick);
-    newCard.addEventListener('click', incrementClickCounter);
+    // newCard.addEventListener('click', incrementClickCounter);
     //append card to container
     newContainer.append(newCard);
     //append the container to the gameBoard
@@ -101,9 +86,9 @@ function unFlipCard(cardFront) {
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
-  let card1 = undefined;
-  let card2 = undefined;
-  let timeoutID;
+let card1 = undefined;
+let card2 = undefined;
+let timeoutID;
  
 function handleCardClick(evt) {
     //clears a previous setTimeout upon click event -- prevents setTimeout from stacking
@@ -123,9 +108,8 @@ function handleCardClick(evt) {
     //everytime user clicks, the previous timeout set by a previous click will be cleared,
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
-
     clearTimeout(timeoutID);
-
+    incrementClickCounter();
     //the event target is the card__back, which is a child of the card
     const card = evt.target.parentElement;
     const cardBack = evt.target;
@@ -189,9 +173,12 @@ function cardsMatch(card1, card2) {
   } 
 }
 
-/**Increment the click counter when a card is clicked */
-function incrementClickCounter(evt) {
-  let count = 0;
-  count++;
-  return count;
+/** Increment the count of clicks with each click. */
+
+let count = 0;
+
+function incrementClickCounter() {
+  const clickCounter = document.querySelector('main > h2');
+  count++;  
+  clickCounter.innerText = 'Clicks: ' + count;
 }
