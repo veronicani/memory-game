@@ -7,7 +7,10 @@
   --clr-wht: rgb(255, 255, 255) ; /* with alpha*/
   
   --font-size: 62.5%;
+  --font-main: 'Holtwood One SC', serif;
   --border-radius: 1rem;
+  --box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+
 }
 
 * {
@@ -15,7 +18,9 @@
 }
 
 body {
-  font-family: 'Holtwood One SC', serif;
+  position: relative;
+  min-height: 100vh;
+  font-family: var(--font-main);
   font-size: var(--font-size);
   color: var(--clr-wht); 
   background-color: var(--clr-background);
@@ -27,17 +32,44 @@ h2 {
   font-size: 2rem;
 }
 
+h3 {
+  font-size: 1.5rem;
+}
+
 /* || Utilities -- for styling choices you want to apply to a lot of elements << ref MDN*/
+
+button {
+  padding-block: 10px;
+  padding-inline: 30px;
+  margin-block: 10px;
+  font-family: var(--font-main);
+  font-size: 1.5rem;
+  line-height: 1.5rem;
+  color: var(--clr-wht);
+  background-color: var(--clr-primary);
+  border: none;
+  border-radius: var(--border-radius);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: .2s all;
+}
+
+button:active {
+  transform: scale(.98);
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+}
 
 /* || Header */
 
 /* || Main */
 main {
-  position: block;
+  position: absolute;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 10rem;
+  align-content: center;
+  row-gap: 2rem;
+  height: 100%;
 }
 
 /* || Gameboard */
@@ -65,7 +97,7 @@ main {
   height: 100%;
   cursor: pointer;
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: var(--box-shadow);
   transition: transform 0.8s ease;
   transform-style: preserve-3d;
 }
@@ -118,3 +150,27 @@ main {
 .purple {
   background-color: purple;
 } 
+
+/* || Popup */
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+  text-align: center;
+  color: var(--clr-font);
+  background-color: var(--clr-wht);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.popup h2,
+h3 {
+  margin-block: 10px;  
+}
+

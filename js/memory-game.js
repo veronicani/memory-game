@@ -2,6 +2,7 @@
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 
+
 const FOUND_MATCH_WAIT_MSECS = 1000;
 const COLOR_HALF = [
   "red", "blue", "green", "orange", "purple",
@@ -12,6 +13,23 @@ const COLORS = COLOR_HALF.concat(COLOR_HALF);
 const colors = shuffle(COLORS);
 
 createCards(colors);
+createClickCounter();
+
+
+/** Create a counter for number of clicks */
+function createClickCounter() {
+  //select the <main> of the document
+  const main = document.querySelector('main');
+  //create a new h2 (clicks)
+  const clickCounter = document.createElement('h2');
+  //assign innerText of h2 to be "Clicks: " + result of incrementing counts;
+  clickCounter.innerText = 'Clicks: ' + incrementClickCounter();
+    //when a click happens, the counter will increment
+  //prepend the h2 to the <main>
+  main.prepend(clickCounter);
+}
+
+
 /** Shuffle array items in-place and return shuffled array. */
 
 function shuffle(items) {
@@ -39,7 +57,6 @@ function shuffle(items) {
 
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
-
   for (let color of colors) {
     //create a div element, add class 'container'
     const newContainer = document.createElement('div');
@@ -60,6 +77,7 @@ function createCards(colors) {
     newCard.append(newCardFront, newCardBack);
     //add a click event listener to the card to handleCardClick
     newCard.addEventListener('click', handleCardClick);
+    newCard.addEventListener('click', incrementClickCounter);
     //append card to container
     newContainer.append(newCard);
     //append the container to the gameBoard
@@ -87,7 +105,7 @@ function unFlipCard(cardFront) {
   let card2 = undefined;
   let timeoutID;
  
-  function handleCardClick(evt) {
+function handleCardClick(evt) {
     //clears a previous setTimeout upon click event -- prevents setTimeout from stacking
       /*Case 1 -  two matching cards w/ setTimeout active to reset card1 and card2. 
       If the "first card" is selected, it will be stored in card1 and count increments to 1. 
@@ -107,6 +125,7 @@ function unFlipCard(cardFront) {
     //duration again.
 
     clearTimeout(timeoutID);
+
     //the event target is the card__back, which is a child of the card
     const card = evt.target.parentElement;
     const cardBack = evt.target;
@@ -142,7 +161,7 @@ function unFlipCard(cardFront) {
         }, 1000);          
       }
     }
-  }
+}
 
 /** Remember if a card is the first one flipped or the second one flipped. */
 function storeCard(flippedCard) {
@@ -170,3 +189,9 @@ function cardsMatch(card1, card2) {
   } 
 }
 
+/**Increment the click counter when a card is clicked */
+function incrementClickCounter(evt) {
+  let count = 0;
+  count++;
+  return count;
+}
