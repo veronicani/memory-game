@@ -12,7 +12,6 @@ const COLORS = COLOR_HALF.concat(COLOR_HALF);
 const colors = shuffle(COLORS);
 
 createCards(colors);
-
 /** Shuffle array items in-place and return shuffled array. */
 
 function shuffle(items) {
@@ -55,6 +54,7 @@ function createCards(colors) {
     newCardFront.classList.add(color); 
     //create a div element, add class 'card__back'
     const newCardBack = document.createElement('div');
+    newCardBack.innerText = "🍊";
     newCardBack.classList.add("card__back");
     //append card_front card__back to card
     newCard.append(newCardFront, newCardBack);
@@ -163,6 +163,10 @@ function cardsMatch(card1, card2) {
   //if classNames of card1 and card2 match
   if (card1.className === card2.className) {
     console.log('match found!');
+    //mark the cards as matched
+    card1.parentElement.classList.add("match");
+    card2.parentElement.classList.add("match");
     return true;
   } 
 }
+

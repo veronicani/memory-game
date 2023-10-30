@@ -1,12 +1,13 @@
 /* || General Styles */
 :root {
-  --clr-background: #FFFFFF;
-  --clr-primary: #FFFFFF;
-  --clr-font: rgb(0 0 0);
-  --clr-font-lt: rgb(0 0 0 / .5) ; /* with alpha*/
+  --clr-background: #6B8CFF;
+  --clr-primary: #FD882B;
+  --clr-cards: #FFC700;
+  --clr-font: #6B8CFF;
+  --clr-wht: rgb(255, 255, 255) ; /* with alpha*/
   
-  --font-size: 16px;
-  --border-radius: 1em;
+  --font-size: 62.5%;
+  --border-radius: 1rem;
 }
 
 * {
@@ -14,20 +15,42 @@
 }
 
 body {
-  font-family:'', sans-serif;
+  font-family: 'Holtwood One SC', serif;
   font-size: var(--font-size);
+  color: var(--clr-wht); 
   background-color: var(--clr-background);
 }
 
 /* || Typography */
 
+h2 {
+  font-size: 2rem;
+}
+
 /* || Utilities -- for styling choices you want to apply to a lot of elements << ref MDN*/
 
 /* || Header */
 
+/* || Main */
+main {
+  position: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 10rem;
+}
+
 /* || Gameboard */
 
-.container {
+#game {
+  position: block;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+#game > .container {
   display: inline-block;
   width: 100px;
   height: 100px;
@@ -62,11 +85,18 @@ body {
 }
 
 .card__front {
+  border: 2px solid var(--clr-wht);
   transform: rotateY(180deg);
 }
 
 .card__back {
-  background: rgb(101, 134, 232);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+  background-color: var(--clr-cards);
+  border-radius: 20%;
+  border: 10px solid var(--clr-wht);
 }
 
 .red {
