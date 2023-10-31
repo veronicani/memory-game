@@ -4,11 +4,30 @@
 
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
-const COLOR_HALF = [
-  "red", "blue", "green", "orange", "purple",
-];
 
-const COLORS = COLOR_HALF.concat(COLOR_HALF);
+const COLORS = randomizeColors(8);
+
+/** Generate an array of random hexCodes for colors*/
+function randomizeColors(num) {
+  //create empty array
+  const colorsHalf = [];
+  //for the number of times param says
+  for (let i = 0; i < num; i++) {
+    //create a random color hex code
+    function generateHex() {
+      const hexChars = '0123456789ABCDEF';
+      let hexCode = '#';
+      for (let i = 0; i < 6; i++) {
+        hexCode += hexChars[Math.floor(Math.random() * 16)];
+      }
+      return hexCode;
+    }
+    //push the string of the hex code to the array
+    colorsHalf.push(generateHex().toString());
+  }
+  //return the array, w/ the values doubled
+  return colorsHalf.concat(colorsHalf);
+}
 
 const colors = shuffle(COLORS);
 
@@ -52,6 +71,8 @@ function createCards(colors) {
     //create a div element, add class 'card__front'
     const newCardFront = document.createElement('div');
     newCardFront.classList.add("card__front");
+    //add inline style of background color to card__front;
+    newCardFront.style.backgroundColor = color;
     //add class with value of color to card__front;
     newCardFront.classList.add(color); 
     //create a div element, add class 'card__back'

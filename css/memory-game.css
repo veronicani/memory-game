@@ -145,26 +145,6 @@ main {
   border: 10px solid var(--clr-wht);
 }
 
-.red {
-  background-color: red;
-} 
-
-.orange {
-  background-color: orange;
-} 
-
-.green {
-  background-color: green;
-} 
-
-.blue {
-  background-color: blue;
-} 
-
-.purple {
-  background-color: purple;
-} 
-
 /* || Popup */
 .popup {
   position: fixed;
