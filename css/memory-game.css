@@ -97,6 +97,7 @@ main {
   grid-auto-rows: minmax(100px, auto);
   /* grid will implicitly create rows to fit content 
   https://youtu.be/rg7Fvvl3taU?t=651 */
+  justify-items: center; 
   gap: 20px;
 }
 
@@ -112,7 +113,6 @@ main {
   display: inline-block;
   width: 100%;
   height: 100%;
-  font-size: 5em;
   /* background-color: transparent; */
   /* border: 1px solid black; */
 }
@@ -154,7 +154,15 @@ main {
   background-color: var(--clr-cards);
   border-radius: 20%;
   border: 10px solid var(--clr-wht);
+  font-size: 5em;
 }
+
+  @media screen and (max-width: 600px) {
+    .card__back {
+      border-width: 7px;
+      font-size: 4em;
+    }
+  }
 
 /* || Popup */
 .popup {

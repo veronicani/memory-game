@@ -5,7 +5,14 @@
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
 
-const COLORS = generateRandomColors(10);
+/** Generate random number between 3 and 10*/
+const NUMBER = generateRandomNum(3, 10);
+
+function generateRandomNum(min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+const COLORS = generateRandomColors(NUMBER);
 
 /** Generate an array of random hexCodes for colors*/
 function generateRandomColors(num) {
