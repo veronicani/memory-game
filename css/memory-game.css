@@ -160,7 +160,7 @@ main {
   @media screen and (max-width: 600px) {
     .card__back {
       border-width: 7px;
-      font-size: 4em;
+      font-size: 3em;
     }
   }
 
