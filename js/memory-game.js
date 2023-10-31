@@ -6,7 +6,7 @@
 const FOUND_MATCH_WAIT_MSECS = 1000;
 
 /** Generate random number between 3 and 10*/
-const NUMBER = generateRandomNum(3, 10);
+const NUMBER = generateRandomNum(1, 2);
 
 function generateRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -92,7 +92,6 @@ function createCards(colors) {
     newCard.append(newCardFront, newCardBack);
     //add a click event listener to the card to handleCardClick
     newCard.addEventListener('click', handleCardClick);
-    // newCard.addEventListener('click', incrementClickCounter);
     //append card to container
     newContainer.append(newCard);
     //append the container to the gameBoard
@@ -205,11 +204,11 @@ function cardsMatch(card1, card2) {
 
 /** Increment the count of clicks with each click. */
 
-let count = 0;
+let clickCount = 0;
 
 function clickCounter() {
   const clickCounter = document.querySelector('main > h2');
-  count++;  
-  clickCounter.innerText = 'Clicks: ' + count;
-  return count;
+  clickCount++;  
+  clickCounter.innerText = 'Clicks: ' + clickCount;
+  return clickCount;
 }

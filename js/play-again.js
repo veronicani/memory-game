@@ -26,6 +26,8 @@ function checkAllMatch() {
 function promptRestart(evt) {
   //if all cards have 'matched' class
   if (checkAllMatch()) {
+    //store the current # clicks in local storage
+    saveScore(clickCount);
     //create popup with win message, click count, and restart button (with event Listener)
     setTimeout(() => {
       //create div (message window)
@@ -42,7 +44,7 @@ function promptRestart(evt) {
       clicks.innerText = '# Clicks to complete:'
       //create h2 - for # score;
       const score = document.createElement('h2');
-      score.innerText = clickCounter();
+      score.innerText = clickCount;
       //create button
       const restartBtn = document.createElement('button');
       //add innerText to button (Play Again?)
@@ -62,3 +64,12 @@ function restartGame() {
   window.location.reload();
 }
 
+/** Store the clicks as a score in local storage */
+function saveScore(clicks) {
+  //if browser supports local storage
+  if (localStorage) {
+    //save current score to local storage
+    localStorage.setItem("currentScore", clicks);
+  }
+  console.log(clicks);
+}
