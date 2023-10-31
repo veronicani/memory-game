@@ -14,19 +14,21 @@ function randomizeColors(num) {
   //for the number of times param says
   for (let i = 0; i < num; i++) {
     //create a random color hex code
-    function generateHex() {
-      const hexChars = '0123456789ABCDEF';
-      let hexCode = '#';
-      for (let i = 0; i < 6; i++) {
-        hexCode += hexChars[Math.floor(Math.random() * 16)];
-      }
-      return hexCode;
-    }
     //push the string of the hex code to the array
     colorsHalf.push(generateHex().toString());
   }
   //return the array, w/ the values doubled
   return colorsHalf.concat(colorsHalf);
+}
+
+/** Generate random hexCode */
+function generateHex() {
+  const hexChars = '0123456789ABCDEF';
+  let hexCode = '#';
+  for (let i = 0; i < 6; i++) {
+    hexCode += hexChars[Math.floor(Math.random() * 16)];
+  }
+  return hexCode;
 }
 
 const colors = shuffle(COLORS);
