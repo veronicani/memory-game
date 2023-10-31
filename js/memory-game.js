@@ -109,7 +109,7 @@ function handleCardClick(evt) {
     // and the cards will never reset. A new timeout is set, forcing user to wait full 
     //duration again.
     clearTimeout(timeoutID);
-    incrementClickCounter();
+    clickCounter();
     //the event target is the card__back, which is a child of the card
     const card = evt.target.parentElement;
     const cardBack = evt.target;
@@ -177,8 +177,9 @@ function cardsMatch(card1, card2) {
 
 let count = 0;
 
-function incrementClickCounter() {
+function clickCounter() {
   const clickCounter = document.querySelector('main > h2');
   count++;  
   clickCounter.innerText = 'Clicks: ' + count;
+  return count;
 }

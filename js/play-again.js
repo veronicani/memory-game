@@ -28,7 +28,6 @@ function promptRestart(evt) {
   if (checkAllMatch()) {
     //create popup with win message, click count, and restart button (with event Listener)
     setTimeout(() => {
-      console.log("You win!");
       //create div (message window)
       const msgWindow = document.createElement('div');
       //add class to div
@@ -37,10 +36,13 @@ function promptRestart(evt) {
       const msg = document.createElement('h2');
       //add innerText to h2 (Nice Job!)
       msg.innerText = 'Nice job!';
-      //create p
-      const score = document.createElement('h3');
+      //create h3
+      const clicks = document.createElement('h3');
       //add innerText to p (# of clicks to complete)
-      score.innerText = '# Clicks to complete: ';
+      clicks.innerText = '# Clicks to complete:'
+      //create h2 - for # score;
+      const score = document.createElement('h2');
+      score.innerText = clickCounter();
       //create button
       const restartBtn = document.createElement('button');
       //add innerText to button (Play Again?)
@@ -48,7 +50,7 @@ function promptRestart(evt) {
       //add addEventListener to button;
       restartBtn.addEventListener('click', restartGame);
       //append h2, p, button to message window
-      msgWindow.append(msg, score, restartBtn);
+      msgWindow.append(msg, clicks, score, restartBtn);
       //append message window to body
       main.append(msgWindow);
     }, 1000);

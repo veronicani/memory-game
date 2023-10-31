@@ -1,6 +1,5 @@
 "use strict";
 
-console.log('page loaded!')
 createLoadPage();
 
 function createLoadPage() {
@@ -8,12 +7,12 @@ function createLoadPage() {
   const loadPage = document.createElement('header');
   const title = document.createElement('h1');
   title.innerText = 'Memory Game';
-  const highScore = document.createElement('h2');
-  highScore.innerText = 'High Score: ';
+  const bestScore = document.createElement('h2');
+  bestScore.innerText = 'Best Score: -- ';
   const startBtn = document.createElement('button');
   startBtn.innerText = "Start"; 
   startBtn.addEventListener('click', loadGame);
-  loadPage.append(title, highScore, startBtn);
+  loadPage.append(title, bestScore, startBtn);
   body.append(loadPage);
 }
 
