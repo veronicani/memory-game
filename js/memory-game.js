@@ -5,7 +5,7 @@
 
 const FOUND_MATCH_WAIT_MSECS = 1000;
 
-const COLORS = generateRandomColors(8);
+const COLORS = generateRandomColors(10);
 
 /** Generate an array of random hexCodes for colors*/
 function generateRandomColors(num) {

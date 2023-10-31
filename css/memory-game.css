@@ -22,6 +22,7 @@ body {
   min-height: 100vh;
   font-family: var(--font-main);
   font-size: var(--font-size);
+  text-align: center;
   color: var(--clr-wht); 
   background-color: var(--clr-background);
 }
@@ -79,28 +80,39 @@ header {
 main {
   position: absolute;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
-  align-content: center;
+  align-items: center;
   row-gap: 2rem;
   height: 100%;
+  width: 100%; 
 }
 
 /* || Gameboard */
 
 #game {
   position: block;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(5, 100px);
+  grid-auto-rows: minmax(100px, auto);
+  /* grid will implicitly create rows to fit content 
+  https://youtu.be/rg7Fvvl3taU?t=651 */
+  gap: 20px;
 }
+
+
+  @media screen and (max-width: 600px) {
+    #game {
+      grid-template-columns: repeat(4, 75px);
+      grid-auto-rows: minmax(75px, auto);
+    }
+  }
 
 #game > .container {
   display: inline-block;
-  width: 100px;
-  height: 100px;
-  margin: 20px;
+  width: 100%;
+  height: 100%;
+  font-size: 5em;
   /* background-color: transparent; */
   /* border: 1px solid black; */
 }
@@ -139,7 +151,6 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 50px;
   background-color: var(--clr-cards);
   border-radius: 20%;
   border: 10px solid var(--clr-wht);
