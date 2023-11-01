@@ -8,7 +8,7 @@ const cards = main.querySelectorAll('.card');
 gameBoard.addEventListener('click', finishGame);
 
 /* Finish the game when all cards match*/
-function finishGame(evt) {
+function finishGame() {
   if (cardsAllMatch(cards)) {
     saveScore(clickCount);
     setTimeout(promptRematch, 1000);

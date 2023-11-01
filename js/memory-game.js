@@ -2,16 +2,17 @@
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 
-const FOUND_MATCH_WAIT_MSECS = 1000;
+
+const NUMBER = generateRandomNum(1, 2);
+const COLORS = generateRandomColors(NUMBER);
+const colors = shuffle(COLORS);
+createCards(colors);
+initGameBoard();
 
 /** Generate random number between 3 and 10*/
-const NUMBER = generateRandomNum(1, 2);
-
 function generateRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-const COLORS = generateRandomColors(NUMBER);
 
 /** Generate an array of random hexCodes for colors*/
 function generateRandomColors(num) {
@@ -38,10 +39,6 @@ function generateHex() {
   }
   return hexCode;
 }
-
-const colors = shuffle(COLORS);
-
-createCards(colors);
 
 /** Shuffle array items in-place and return shuffled array. */
 
@@ -70,35 +67,29 @@ function shuffle(items) {
 
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
-  //add a click event listener to the gameBoard to handleCardClick
-  gameBoard.addEventListener('click', handleCardClick);
   for (let color of colors) {
-    //create a div element, add class 'container'
     const newContainer = document.createElement('div');
     newContainer.classList.add("container");
-    //create a div element, add class 'card'
     const newCard = document.createElement('div');
     newCard.classList.add("card");
-    //create a div element, add class 'card__front'
     const newCardFront = document.createElement('div');
     newCardFront.classList.add("card__front");
-    //add inline style of background color to card__front;
     newCardFront.style.backgroundColor = color;
-    //add class with value of color to card__front;
     newCardFront.classList.add(color); 
-    //create a div element, add class 'card__back'
     const newCardBack = document.createElement('div');
     newCardBack.innerText = "🍊";
     newCardBack.classList.add("card__back");
-    //append card_front card__back to card
     newCard.append(newCardFront, newCardBack);
-    //append card to container
     newContainer.append(newCard);
-    //append the container to the gameBoard
     gameBoard.append(newContainer);
   }
 }
 
+function initGameBoard() {
+  const gameBoard = document.getElementById("game");
+  //add a click event listener to the gameBoard to handleCardClick
+  gameBoard.addEventListener('click', handleCardClick);
+}
 /** Flip a card face-up. */
 
 function flipCard(cardBack) {
@@ -115,8 +106,8 @@ function unFlipCard(cardFront) {
 
 /** Handle clicking on a card: this could be first-card or second-card. */
 
-let card1 = undefined;
-let card2 = undefined;
+let card1;
+let card2;
 let timeoutID;
  
 function handleCardClick(evt) {
@@ -124,37 +115,28 @@ function handleCardClick(evt) {
   if (evt.target.className === 'card__back') {
     //check Notes for clearTimeout:
     clearTimeout(timeoutID);
-    clickCounter();
-    //the event target is the card__back, which is a child of the card
+    incrementClickCounter();
+    
     const card = evt.target.parentElement;
     const cardBack = evt.target;
     const cardFront = evt.target.previousElementSibling;
-    //if card1 or card2 are undefined
+    
     if (card1 === undefined || card2 === undefined) {
-      //if the card is not flipped
       if (!card.classList.contains('flipped')) {
-        //flip the card
         flipCard(cardBack);
-        //store the card's front as card1 or card2
         storeCard(cardFront);
       }
     }
-    //if card1 and card2 have been selected
     if (card1 !== undefined && card2 !== undefined) {
-      //check if cards match
       if (cardsMatch(card1, card2)) {
         //if so, leave face up
-        //reset card1 and card2 to be undefined;
         card1 = undefined;
         card2 = undefined;
       } else {
         //wait 1 second
         timeoutID = setTimeout(() => {
-          //unflip card1 and card2
-          console.log(card1.parentElement, card2.parentElement);
           unFlipCard(card1);
           unFlipCard(card2);
-          //reset card1 and card2 to be undefined;
           card1 = undefined;
           card2 = undefined;
         }, 1000);          
@@ -212,7 +194,7 @@ function cardsMatch(card1, card2) {
 
 let clickCount = 0;
 
-function clickCounter() {
+function incrementClickCounter() {
   const clickCounter = document.querySelector('main > h2');
   clickCount++;  
   clickCounter.innerText = 'Clicks: ' + clickCount;
