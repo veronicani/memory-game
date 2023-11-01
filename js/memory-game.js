@@ -43,7 +43,6 @@ const colors = shuffle(COLORS);
 
 createCards(colors);
 
-
 /** Shuffle array items in-place and return shuffled array. */
 
 function shuffle(items) {
@@ -71,6 +70,8 @@ function shuffle(items) {
 
 function createCards(colors) {
   const gameBoard = document.getElementById("game");
+  //add a click event listener to the gameBoard to handleCardClick
+  gameBoard.addEventListener('click', handleCardClick);
   for (let color of colors) {
     //create a div element, add class 'container'
     const newContainer = document.createElement('div');
@@ -91,8 +92,6 @@ function createCards(colors) {
     newCardBack.classList.add("card__back");
     //append card_front card__back to card
     newCard.append(newCardFront, newCardBack);
-    //add a click event listener to the card to handleCardClick
-    newCard.addEventListener('click', handleCardClick);
     //append card to container
     newContainer.append(newCard);
     //append the container to the gameBoard
@@ -121,23 +120,9 @@ let card2 = undefined;
 let timeoutID;
  
 function handleCardClick(evt) {
-    //clears a previous setTimeout upon click event -- prevents setTimeout from stacking
-      /*Case 1 -  two matching cards w/ setTimeout active to reset card1 and card2. 
-      If the "first card" is selected, it will be stored in card1 and count increments to 1. 
-      If previous setTimeout has reached its timer before user clicks again and calls the 
-      function, it will execute cb and reset the card1 and count. Now, the "first card" is
-      no longer stored in card1, and the next card flipped will be the new card1.  It will
-      remain flipped.*/
-    
-      /*Case 2 - two non-matching cards w/ setTimeout active to unflip cards. 
-      If the "first card" is selected, it will be stored in card1 and count increments to 1.
-      If previous setTimeout has reached its timer before user clicks again and calls the 
-      function, it will execute and unflip card1. The "first card" will be unflipped before
-      you click on a second card.*/
-
-    //everytime user clicks, the previous timeout set by a previous click will be cleared,
-    // and the cards will never reset. A new timeout is set, forcing user to wait full 
-    //duration again.
+  //if the event target is the card back
+  if (evt.target.className === 'card__back') {
+    //check Notes for clearTimeout:
     clearTimeout(timeoutID);
     clickCounter();
     //the event target is the card__back, which is a child of the card
@@ -175,7 +160,27 @@ function handleCardClick(evt) {
         }, 1000);          
       }
     }
+  }
 }
+
+/*Notes for clearTimeout:
+Clears a previous setTimeout upon click event -- prevents setTimeout from stacking
+      /*Case 1 -  two matching cards w/ setTimeout active to reset card1 and card2. 
+      If the "first card" is selected, it will be stored in card1 and count increments to 1. 
+      If previous setTimeout has reached its timer before user clicks again and calls the 
+      function, it will execute cb and reset the card1 and count. Now, the "first card" is
+      no longer stored in card1, and the next card flipped will be the new card1.  It will
+      remain flipped.*/
+    
+      /*Case 2 - two non-matching cards w/ setTimeout active to unflip cards. 
+      If the "first card" is selected, it will be stored in card1 and count increments to 1.
+      If previous setTimeout has reached its timer before user clicks again and calls the 
+      function, it will execute and unflip card1. The "first card" will be unflipped before
+      you click on a second card.*/
+
+    //everytime user clicks, the previous timeout set by a previous click will be cleared,
+    // and the cards will never reset. A new timeout is set, forcing user to wait full 
+    //duration again.
 
 /** Remember if a card is the first one flipped or the second one flipped. */
 function storeCard(flippedCard) {

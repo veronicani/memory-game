@@ -13,7 +13,6 @@ function checkAllMatch() {
   //iterate over all the cards
   for (let card of cards) {
     //if a card does not have 'match' class
-    console.log(card.classList);
     if (!card.classList.contains('match')) {
       //return false
       return false;
