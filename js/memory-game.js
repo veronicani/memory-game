@@ -2,7 +2,6 @@
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 
-
 const FOUND_MATCH_WAIT_MSECS = 1000;
 
 /** Generate random number between 3 and 10*/
@@ -29,6 +28,8 @@ function generateRandomColors(num) {
 }
 
 /** Generate random hexCode */
+/* https://stackoverflow.com/questions/1484506/random-color-generator */
+
 function generateHex() {
   const hexChars = '0123456789ABCDEF';
   let hexCode = '#';
