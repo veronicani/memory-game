@@ -65,6 +65,8 @@ function restartGame() {
 }
 
 /** Store the clicks as a score in local storage */
+/*https://gamedevjs.com/articles/using-local-storage-for-high-scores-and-game-progress/*/
+
 function saveScore(clicks) {
   //if browser supports local storage
   if (localStorage) {
