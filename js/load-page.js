@@ -13,6 +13,7 @@ function createLoadPage() {
   startBtn.innerText = "Start"; 
   startBtn.addEventListener('click', removeLoadPage);
   const clearBtn = document.createElement('button');
+  clearBtn.classList.add('secondary-btn');
   clearBtn.innerText = "Clear Best Score";
   clearBtn.addEventListener('click', clearBestScore);
   loadPage.append(title, bestScoreTxt, startBtn, clearBtn);
@@ -20,7 +21,9 @@ function createLoadPage() {
 }
 
 function removeLoadPage(evt) {
-  evt.target.parentElement.remove();
+  setTimeout(function() {
+    evt.target.parentElement.remove();
+  }, 200);
 }
 
 /* Retrieve best score from local storage */

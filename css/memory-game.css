@@ -1,6 +1,6 @@
 /* || General Styles */
 :root {
-  --clr-background: #6B8CFF;
+  --clr-background: hsl(227, 100%, 71%);
   --clr-primary: #FD882B;
   --clr-cards: #FFC700;
   --clr-font: #6B8CFF;
@@ -53,14 +53,19 @@ button {
   background-color: var(--clr-primary);
   border: none;
   border-radius: var(--border-radius);
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 4px 0 0 rgb(194, 86, 24); 
   cursor: pointer;
-  transition: .2s all;
 }
 
 button:active {
-  transform: scale(.98);
-  box-shadow: 0 2px 2px 0 rgba(0,0,0,0.2);
+  transform: translate(0, 4px); 
+  box-shadow: none;
+}
+
+.secondary-btn {
+  background-color: hsl(227, 100%, 74%);;
+  border: 2px solid rgb(64, 105, 199);
+  box-shadow: 0 4px 0 0 rgb(64, 105, 199);
 }
 
 /* || Header */
