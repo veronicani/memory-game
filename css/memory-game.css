@@ -169,6 +169,15 @@ main {
     }
   }
 
+  .card__img {
+    position: absolute;
+    height: 70%;
+    width: 70%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
 /* || Popup */
 .popup {
   position: fixed;
