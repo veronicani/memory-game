@@ -5,7 +5,7 @@
 const FOUND_MATCH_WAIT_MSECS = 1000;
 
 /** Generate random number between 3 and 10*/
-const NUMBER = generateRandomNum(14, 20);
+const NUMBER = generateRandomNum(1, 2);
 
 function generateRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
