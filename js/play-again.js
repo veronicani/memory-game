@@ -71,5 +71,4 @@ function saveScore(clicks) {
     //save current score to local storage
     localStorage.setItem("currentScore", clicks);
   }
-  console.log(clicks);
 }
