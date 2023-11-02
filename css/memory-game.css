@@ -16,6 +16,9 @@
   --gutter: 10px;
   --noOfColumns: 5;
 
+  /* Code to make grid cells 1:1 ratio*/
+  /* https://css-irl.info/aspect-ratio-cells/ */
+
   /* Number of gutters is columns minus 1: */
 	--noOfGutters: calc(var(--noOfColumns) - 1);
   /* Calculating row height */
