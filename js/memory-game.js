@@ -8,7 +8,7 @@ const colorShapes = shuffle(COLORSHAPES);
 createCards(colorShapes);
 initGameBoard();
 
-/** Generate random number between 3 and 10*/
+/** Generate random number between min and max*/
 function generateRandomNum(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
