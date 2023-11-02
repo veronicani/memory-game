@@ -2,7 +2,7 @@
 
 /** Memory game: find matching pairs of cards and flip both of them. */
 
-const NUMBER = generateRandomNum(20, 20);
+const NUMBER = generateRandomNum(10, 20);
 const COLORSHAPES = generateRandomColorShape(NUMBER);
 const colorShapes = shuffle(COLORSHAPES);
 createCards(colorShapes);
